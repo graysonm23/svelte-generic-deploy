@@ -14,7 +14,7 @@
   const headers = new Headers();
   headers.append("Content-Type", "application/json");
   headers.append("Accept", "application/json");
-  headers.append("Origin", "*");
+  headers.append("Origin", "https://svelte-new-vercel-jhmp0wyvl.vercel.app/");
 
   const submitHandler = async () => {
     errors.username = "";
