@@ -41,3 +41,5 @@ You can run the newly built app with `npm run start`. This uses [sirv](https://g
 ## Updates
 
 Integrated tailwind css to project.
+
+Due to complications with Heroku, the site has been uploaded to Vercel instead. The deployment link is available in the description above.
