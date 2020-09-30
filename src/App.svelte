@@ -39,7 +39,7 @@
   const headers = new Headers();
   headers.append("Content-Type", "application/json");
   headers.append("Accept", "application/json");
-  headers.append("Origin", "https://svelte-new-vercel-jhmp0wyvl.vercel.app/");
+  headers.append("Origin", "*");
 
   onMount(async () => {
     const res = await axios({
