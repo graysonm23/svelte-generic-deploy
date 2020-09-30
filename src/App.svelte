@@ -1,48 +1,69 @@
 <script>
-  import { onMount } from "svelte";
-  export let date;
+  import { loggedIn } from "./Store/GlobalStore";
+  import Header from "./components/Header.svelte";
+  import Home from "./components/Home.svelte";
+  import LogIn from "./components/LogIn.svelte";
+  import SignUp from "./components/SignUp.svelte";
+  import { onDestroy, onMount } from "svelte";
+  import axios from "axios";
+  let userLoggedIn;
+  let LoggedInmenu = ["Home"];
+  let LoggedOutMenu = ["Home", "Log In", "Sign Up"];
+  let menu;
+  let activeTab = "Home";
+
+  $: userLoggedIn ? (menu = LoggedInmenu) : (menu = LoggedOutMenu);
+
+  const unsubscribe = loggedIn.subscribe((value) => {
+    userLoggedIn = value;
+  });
+
+  const changeTabs = (e) => {
+    activeTab = e.detail;
+  };
+  const handleAdd = () => {
+    activeTab = "Log In";
+  };
+  const handleLogin = () => {
+    loggedIn.update((value) => (value = true));
+    //$ denotes that the user is subscribing and unscubscribing without having to call unsibscribe();
+    userLoggedIn = $loggedIn;
+    activeTab = "Home";
+  };
+  const handleLogout = () => {
+    loggedIn.update((value) => (value = false));
+    userLoggedIn = $loggedIn;
+    activeTab = "Log In";
+  };
 
   onMount(async () => {
-    const res = await fetch("/api/date");
-    const newDate = await res.text();
-    date = newDate;
+    const res = await axios({
+      method: "get",
+      url: `http://localhost:5001/user`,
+      withCredentials: false,
+    });
+    if (res.data.message) {
+      loggedIn.update((value) => (value = true));
+      userLoggedIn = $loggedIn;
+    }
+  });
+
+  onDestroy(() => {
+    //always unsibscribe from store to avoid memory leaks
+    unsubscribe();
   });
 </script>
 
-<main>
-  <h1>Svelte + Node.js API</h1>
-  <h2>
-    Deployed with
-    <a href="https://vercel.com/docs" target="_blank" rel="noreferrer noopener">
-      Vercel
-    </a>
-    !
-  </h2>
-  <p>
-    <a
-      href="https://github.com/vercel/vercel/tree/master/examples/svelte"
-      target="_blank"
-      rel="noreferrer noopener">
-      This project
-    </a>
-    is a
-    <a href="https://svelte.dev/">Svelte</a>
-    app with three directories,
-    <code>/public</code>
-    for static assets,
-    <code>/src</code>
-    for components and content, and
-    <code>/api</code>
-    which contains a serverless
-    <a href="https://nodejs.org/en/">Node.js</a>
-    function. See
-    <a href="/api/date">
-      <code>api/date</code>
-      for the Date API with Node.js
-    </a>
-    .
-  </p>
-  <br />
-  <h2>The date according to Node.js is:</h2>
-  <p>{date ? date : 'Loading date...'}</p>
+<style>
+</style>
+
+<main class="text-center p-4 max-w-full m-0 m-auto">
+  <Header {userLoggedIn} on:tabChange={changeTabs} {menu} />
+  {#if activeTab === 'Home'}
+    <Home on:logout={handleLogout} />
+  {:else if activeTab === 'Log In'}
+    <LogIn on:login={handleLogin} />
+  {:else if activeTab === 'Sign Up'}
+    <SignUp on:add={handleAdd} />
+  {/if}
 </main>
