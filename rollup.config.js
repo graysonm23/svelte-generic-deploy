@@ -1,18 +1,45 @@
-import svelte from 'rollup-plugin-svelte';
-import resolve from '@rollup/plugin-node-resolve';
-import commonjs from '@rollup/plugin-commonjs';
-import livereload from 'rollup-plugin-livereload';
-import { terser } from 'rollup-plugin-terser';
+import svelte from "rollup-plugin-svelte";
+import resolve from "@rollup/plugin-node-resolve";
+import commonjs from "@rollup/plugin-commonjs";
+import livereload from "rollup-plugin-livereload";
+import { terser } from "rollup-plugin-terser";
 
 const production = !process.env.ROLLUP_WATCH;
 
+function proxy() {
+  let started = false;
+
+  return {
+    writeBundle() {
+      if (!started) {
+        started = true;
+        // Listen on a specific host via the HOST environment variable
+        var host = process.env.HOST || "localhost";
+        // Listen on a specific port via the PORT environment variable
+        var port = process.env.PORT || 8080;
+
+        var cors_proxy = require("cors-anywhere");
+        cors_proxy
+          .createServer({
+            originWhitelist: [], // Allow all origins
+            requireHeader: ["origin", "x-requested-with"],
+            removeHeaders: ["cookie", "cookie2"],
+          })
+          .listen(port, host, function () {
+            console.log("Running CORS Anywhere on " + host + ":" + port);
+          });
+      }
+    },
+  };
+}
+
 export default {
-  input: 'src/main.js',
+  input: "src/main.js",
   output: {
     sourcemap: true,
-    format: 'iife',
-    name: 'app',
-    file: 'public/bundle.js',
+    format: "iife",
+    name: "app",
+    file: "public/bundle.js",
   },
   plugins: [
     svelte({
@@ -20,8 +47,8 @@ export default {
       dev: !production,
       // we'll extract any component CSS out into
       // a separate file — better for performance
-      css: css => {
-        css.write('public/bundle.css');
+      css: (css) => {
+        css.write("public/bundle.css");
       },
     }),
 
@@ -35,7 +62,8 @@ export default {
 
     // Watch the `public` directory and refresh the
     // browser on changes when not in production
-    !production && livereload('public'),
+    !production && livereload("public"),
+    !production && proxy(),
 
     // If we're building for production (npm run build
     // instead of npm run dev), minify

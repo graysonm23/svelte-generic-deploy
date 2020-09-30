@@ -39,8 +39,7 @@
   onMount(async () => {
     const res = await axios({
       method: "get",
-      url: `https://svelte-new-vercel.vercel.app:5001/user`,
-      withCredentials: true,
+      url: `http://localhost:8080/` + `http://localhost:5001/user`,
     });
     if (res.data.message) {
       loggedIn.update((value) => (value = true));

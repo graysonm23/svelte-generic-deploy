@@ -20,12 +20,12 @@ app.use(
     extended: true,
   })
 );
-app.use(
-  cors({
-    origin: "https://svelte-new-vercel.vercel.app:5000/", // <-- location of the app were connecting to
-    credentials: true,
-  })
-);
+// app.use(
+//   cors({
+//     origin: "http://localhost:5000", // <-- location of the react app we're connecting to
+//     credentials: true,
+//   })
+// );
 app.use(
   session({
     secret: "secretcode", // <-- here we are defining the cookie name to be stored in the users browser
