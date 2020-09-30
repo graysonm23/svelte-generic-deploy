@@ -44,7 +44,7 @@ export default {
   },
   plugins: [
     replace({
-      CORS_URL_PROXY: production ? "" : "http://localhost:8080/",
+      CORS_URL_PROXY: !production ? "" : "http://localhost:8080/",
     }),
     svelte({
       // enable run-time checks when not in production
