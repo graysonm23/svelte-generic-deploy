@@ -23,7 +23,7 @@ app.use(
 app.use(
   cors({
     origin: "https://svelte-new-vercel-jhmp0wyvl.vercel.app/", // <-- location of the app were connecting to
-    credentials: true,
+    credentials: false,
   })
 );
 app.use(
