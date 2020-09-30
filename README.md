@@ -1,19 +1,43 @@
-# Svelte Example
+# Simple Svelte User Login Feature
 
-This directory is a brief example of a [Svelte](https://svelte.dev/) app with [Serverless Functions](https://vercel.com/docs/v2/serverless-functions/introduction) that can be deployed with Vercel and zero configuration.
+More Features to come soon, as this is just a side project. I would love to incorporate more features for everyone. Please let me know what you think. If you like it please give it a star.
 
-## Deploy Your Own
+-- This is a full stack application using Node.js, MongoDB, Svelte, and Express.
 
-Deploy your own Svelte project, along with Serverless Functions, with Vercel.
+## Get started
 
-[![Deploy with Vercel](https://vercel.com/button)](https://vercel.com/import/project?template=https://github.com/vercel/vercel/tree/master/examples/svelte)
+Git Clone...
 
-_Live Example: https://svelte.now-examples.now.sh_
+`git clone https://github.com/graysonm23/User-Login-Svelte.git`
 
-### How We Created This Example
+Install the dependencies...
 
-To get started with Svelte, along with [Serverless Functions](https://vercel.com/docs/v2/serverless-functions/introduction), deployed with Vercel, you can use [degit](https://github.com/Rich-Harris/degit) to initialize the project:
-
-```shell
-$ npx degit sveltejs/template my-svelte-project
+```bash/terminal
+cd User-Login-Svelte
+npm install
 ```
+
+...then start [Rollup](https://rollupjs.org):
+
+```bash
+npm run buid
+npm run dev
+```
+
+Navigate to [localhost:5000](http://localhost:5000). You should see your app running. Edit a component file in `src`, save it, and reload the page to see your changes.
+
+By default, the server will only respond to requests from localhost. To allow connections from other computers, edit the `sirv` commands in package.json to include the option `--host 0.0.0.0`.
+
+## Building and running in production mode
+
+To create an optimised version of the app:
+
+```bash
+npm run build
+```
+
+You can run the newly built app with `npm run start`. This uses [sirv](https://github.com/lukeed/sirv), which is included in your package.json's `dependencies` so that the app will work when you deploy to platforms like [Heroku](https://heroku.com).
+
+## Updates
+
+Integrated tailwind css to project.
