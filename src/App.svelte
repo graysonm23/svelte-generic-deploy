@@ -39,7 +39,7 @@
   onMount(async () => {
     const res = await axios({
       method: "get",
-      url: `https://svelte-new-vercel-7hfsbmtrd.vercel.app//user`,
+      url: `https://svelte-new-vercel-7hfsbmtrd.vercel.app/user`,
       withCredentials: true,
     });
     if (res.data.message) {
