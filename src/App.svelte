@@ -40,7 +40,7 @@
     const res = await axios({
       method: "get",
       url: `https://svelte-new-vercel-7hfsbmtrd.vercel.app/user`,
-      withCredentials: true,
+      withCredentials: false,
     });
     if (res.data.message) {
       loggedIn.update((value) => (value = true));

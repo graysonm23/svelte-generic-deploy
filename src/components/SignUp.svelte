@@ -29,7 +29,7 @@
         method: "post",
         url: `https://svelte-new-vercel-7hfsbmtrd.vercel.app//create`,
         data: user,
-        withCredentials: true,
+        withCredentials: false,
       });
       if (res.data.message === "Client already exists") {
         userExists = true;

@@ -17,7 +17,7 @@
       method: "post",
       url: `https://svelte-new-vercel-7hfsbmtrd.vercel.app//login`,
       data: user,
-      withCredentials: true,
+      withCredentials: false,
     });
     if (res.data.message === "User does not exist") {
       validUser = false;
