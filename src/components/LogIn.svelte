@@ -15,9 +15,9 @@
     user.password = user.password.trim();
     const res = await axios({
       method: "post",
-      url: `http://localhost:5001/login`,
+      url: `https://svelte-new-vercel-7hfsbmtrd.vercel.app//login`,
       data: user,
-      withCredentials: false,
+      withCredentials: true,
     });
     if (res.data.message === "User does not exist") {
       validUser = false;

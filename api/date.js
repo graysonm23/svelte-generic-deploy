@@ -50,6 +50,7 @@ mongoose.connection.on("connected", () => {
 
 app.post("/login", (req, res, next) => {
   //check to see if user exists
+  console.log("logging in ...");
   passport.authenticate("local", (err, user, info) => {
     console.log(user);
     if (err) throw err;
@@ -64,6 +65,7 @@ app.post("/login", (req, res, next) => {
 });
 app.post("/create", async (req, res) => {
   //check to see if user exists
+  console.log("creating ...");
   const { username, password } = req.body;
 
   try {
@@ -89,6 +91,7 @@ app.get("/user", (req, res) => {
   res.json({ message: req.user }); // The req.user stores the entire user that has been authenticated inside of it.
 });
 app.get("/logout", (req, res, next) => {
+  console.log("logging out ...");
   req.logOut();
   res.json({ message: "User logged out" });
 });
