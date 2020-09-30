@@ -95,10 +95,6 @@ app.get("/logout", (req, res, next) => {
   req.logOut();
   res.json({ message: "User logged out" });
 });
-app.use(express.static("public"));
-app.get("*", (req, res) => {
-  res.sendFile(path.resolve(__dirname, "public", "index.html"));
-});
 app.listen(5001, () => {
   console.log("App's running on port 5001");
 });
