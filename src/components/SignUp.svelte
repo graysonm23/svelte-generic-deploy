@@ -4,6 +4,8 @@
   import Button from "../shared/Button.svelte";
   import axios from "axios";
 
+  export let proxy;
+
   const dispatch = createEventDispatcher();
   let user = { username: "", password: "" };
   let errors = { username: "", password: "" };
@@ -27,7 +29,7 @@
       user.password = user.password.trim();
       const res = await axios({
         method: "post",
-        url: `http://localhost:8080/` + `http://localhost:5001/create`,
+        url: proxy + `http://localhost:5001/create`,
         data: user,
       });
       if (res.data.message === "Client already exists") {

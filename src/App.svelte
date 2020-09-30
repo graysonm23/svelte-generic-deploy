@@ -11,6 +11,7 @@
   let LoggedOutMenu = ["Home", "Log In", "Sign Up"];
   let menu;
   let activeTab = "Home";
+  let proxy = "CORS_URL_PROXY";
 
   $: userLoggedIn ? (menu = LoggedInmenu) : (menu = LoggedOutMenu);
 
@@ -39,7 +40,7 @@
   onMount(async () => {
     const res = await axios({
       method: "get",
-      url: `http://localhost:8080/` + `http://localhost:5001/user`,
+      url: proxy + `http://localhost:5001/user`,
     });
     if (res.data.message) {
       loggedIn.update((value) => (value = true));
@@ -61,8 +62,8 @@
   {#if activeTab === 'Home'}
     <Home on:logout={handleLogout} />
   {:else if activeTab === 'Log In'}
-    <LogIn on:login={handleLogin} />
+    <LogIn {proxy} on:login={handleLogin} />
   {:else if activeTab === 'Sign Up'}
-    <SignUp on:add={handleAdd} />
+    <SignUp {proxy} on:add={handleAdd} />
   {/if}
 </main>

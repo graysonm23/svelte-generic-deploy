@@ -4,6 +4,8 @@
   import Button from "../shared/Button.svelte";
   import axios from "axios";
 
+  export let proxy;
+
   let user = { username: "", password: "" };
   let validUser = true;
   let somethingWentWrong = false;
@@ -15,7 +17,7 @@
     user.password = user.password.trim();
     const res = await axios({
       method: "post",
-      url: `http://localhost:8080/` + `http://localhost:5001/login`,
+      url: proxy + `http://localhost:5001/login`,
       data: user,
     });
     console.log(res);
