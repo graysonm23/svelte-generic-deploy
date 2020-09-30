@@ -17,7 +17,7 @@
     user.password = user.password.trim();
     const res = await axios({
       method: "post",
-      url: proxy + `http://localhost:5001/login`,
+      url: proxy + `https://svelte-new-vercel.vercel.app:5001/login`,
       data: user,
     });
     console.log(res);

@@ -29,7 +29,7 @@
       user.password = user.password.trim();
       const res = await axios({
         method: "post",
-        url: proxy + `http://localhost:5001/create`,
+        url: proxy + `https://svelte-new-vercel.vercel.app:5001/create`,
         data: user,
       });
       if (res.data.message === "Client already exists") {

@@ -40,7 +40,7 @@
   onMount(async () => {
     const res = await axios({
       method: "get",
-      url: proxy + `http://localhost:5001/user`,
+      url: proxy + `https://svelte-new-vercel.vercel.app:5001/user`,
     });
     if (res.data.message) {
       loggedIn.update((value) => (value = true));
