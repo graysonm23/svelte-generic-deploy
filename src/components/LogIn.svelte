@@ -10,18 +10,12 @@
 
   const dispatch = createEventDispatcher();
 
-  const headers = new Headers();
-  headers.append("Content-Type", "application/json");
-  headers.append("Accept", "application/json");
-  headers.append("Origin", "*");
-
   const submitHandler = async () => {
     user.username = user.username.trim();
     user.password = user.password.trim();
     const res = await axios({
       method: "post",
-      headers,
-      url: `https://svelte-new-vercel-7hfsbmtrd.vercel.app/login`,
+      url: `https://svelte-new-vercel.vercel.app:5001/login`,
       data: user,
       withCredentials: true,
     });

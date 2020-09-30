@@ -22,7 +22,7 @@ app.use(
 );
 app.use(
   cors({
-    origin: "*", // <-- location of the app were connecting to
+    origin: "https://svelte-new-vercel.vercel.app:5000/", // <-- location of the app were connecting to
     credentials: true,
   })
 );

@@ -11,7 +11,7 @@
   const handleLogout = async () => {
     const response = axios({
       method: "get",
-      url: "http://localhost:5001/logout",
+      url: "https://svelte-new-vercel.vercel.app:5001/logout",
       withCredentials: true,
     });
     loggedIn.update((value) => (value = false));

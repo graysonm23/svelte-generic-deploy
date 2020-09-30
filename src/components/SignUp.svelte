@@ -11,11 +11,6 @@
   let userExists = false;
   let somethingWentWrong = false;
 
-  const headers = new Headers();
-  headers.append("Content-Type", "application/json");
-  headers.append("Accept", "application/json");
-  headers.append("Origin", "*");
-
   const submitHandler = async () => {
     errors.username = "";
     errors.password = "";
@@ -32,8 +27,7 @@
       user.password = user.password.trim();
       const res = await axios({
         method: "post",
-        headers,
-        url: `https://svelte-new-vercel-7hfsbmtrd.vercel.app/create`,
+        url: `https://svelte-new-vercel.vercel.app:5001/create`,
         data: user,
         withCredentials: true,
       });

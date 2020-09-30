@@ -36,16 +36,10 @@
     activeTab = "Log In";
   };
 
-  const headers = new Headers();
-  headers.append("Content-Type", "application/json");
-  headers.append("Accept", "application/json");
-  headers.append("Origin", "*");
-
   onMount(async () => {
     const res = await axios({
       method: "get",
-      headers,
-      url: `https://svelte-new-vercel-7hfsbmtrd.vercel.app/user`,
+      url: `https://svelte-new-vercel.vercel.app:5001/user`,
       withCredentials: true,
     });
     if (res.data.message) {
