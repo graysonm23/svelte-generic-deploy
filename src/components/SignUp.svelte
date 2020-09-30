@@ -33,7 +33,7 @@
       const res = await axios({
         method: "post",
         headers,
-        url: `https://svelte-new-vercel-7hfsbmtrd.vercel.app//create`,
+        url: `https://svelte-new-vercel-7hfsbmtrd.vercel.app/create`,
         data: user,
         withCredentials: true,
       });

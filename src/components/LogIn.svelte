@@ -21,7 +21,7 @@
     const res = await axios({
       method: "post",
       headers,
-      url: `https://svelte-new-vercel-7hfsbmtrd.vercel.app//login`,
+      url: `https://svelte-new-vercel-7hfsbmtrd.vercel.app/login`,
       data: user,
       withCredentials: true,
     });
