@@ -10,14 +10,20 @@
 
   const dispatch = createEventDispatcher();
 
+  const headers = new Headers();
+  headers.append("Content-Type", "application/json");
+  headers.append("Accept", "application/json");
+  headers.append("Origin", "*");
+
   const submitHandler = async () => {
     user.username = user.username.trim();
     user.password = user.password.trim();
     const res = await axios({
       method: "post",
+      headers,
       url: `https://svelte-new-vercel-7hfsbmtrd.vercel.app//login`,
       data: user,
-      withCredentials: false,
+      withCredentials: true,
     });
     if (res.data.message === "User does not exist") {
       validUser = false;

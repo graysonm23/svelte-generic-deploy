@@ -11,6 +11,11 @@
   let userExists = false;
   let somethingWentWrong = false;
 
+  const headers = new Headers();
+  headers.append("Content-Type", "application/json");
+  headers.append("Accept", "application/json");
+  headers.append("Origin", "*");
+
   const submitHandler = async () => {
     errors.username = "";
     errors.password = "";
@@ -27,9 +32,10 @@
       user.password = user.password.trim();
       const res = await axios({
         method: "post",
+        headers,
         url: `https://svelte-new-vercel-7hfsbmtrd.vercel.app//create`,
         data: user,
-        withCredentials: false,
+        withCredentials: true,
       });
       if (res.data.message === "Client already exists") {
         userExists = true;
