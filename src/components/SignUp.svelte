@@ -29,7 +29,7 @@
         method: "post",
         url: `http://localhost:5001/create`,
         data: user,
-        withCredentials: true,
+        withCredentials: false,
       });
       if (res.data.message === "Client already exists") {
         userExists = true;

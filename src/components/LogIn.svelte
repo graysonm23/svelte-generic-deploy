@@ -17,7 +17,7 @@
       method: "post",
       url: `http://localhost:5001/login`,
       data: user,
-      withCredentials: true,
+      withCredentials: false,
     });
     if (res.data.message === "User does not exist") {
       validUser = false;
